@@ -551,25 +551,20 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
-.h-11 {
-  height: 2.75rem;
+.flex {
+  display: flex;
 }
 
 .h-12 {
   height: 3rem;
 }
 
-.w-10 {
-  width: 2.5rem;
+.w-full {
+  width: 100%;
 }
 
-.w-2 {
-  width: 0.5rem;
-}
-
-.bg-orange-800 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(154 52 18 / var(--tw-bg-opacity));
+.justify-between {
+  justify-content: space-between;
 }
 
 .bg-blue-500 {

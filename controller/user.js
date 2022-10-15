@@ -7,7 +7,7 @@ router.get("/", (req, res) => {
 
 router.get("/send", (req, res) => {
   res.render("index", {
-    title: "Kirim Undangan",
+    title: "Kirim PANGANAN",
   });
 });
 
