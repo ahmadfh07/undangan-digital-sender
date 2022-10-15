@@ -6,8 +6,9 @@ router.get("/", (req, res) => {
 });
 
 router.get("/send", (req, res) => {
-  res.render("index", {
+  res.render("send", {
     title: "Kirim PANGANAN",
+    layout: "layout/main-layout",
   });
 });
 

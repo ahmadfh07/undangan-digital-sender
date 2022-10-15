@@ -1,5 +1,5 @@
 const express = require("express");
-// const expressLayouts = require("express-ejs-layouts");
+const expressLayouts = require("express-ejs-layouts");
 const bodyParser = require("body-parser");
 const ejs = require("express");
 const path = require("path");
@@ -12,10 +12,13 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
-// app.use(expressLayouts);
+app.use(expressLayouts);
 
 app.get("/", (req, res) => {
-  res.send("this is home");
+  res.render("home", {
+    title: "HOME",
+    layout: "layout/main-layout",
+  });
 });
 
 app.use("/user", user);
