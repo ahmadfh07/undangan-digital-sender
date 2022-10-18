@@ -1,1 +1,33 @@
 <div>hello world</div>
+<img src="" alt="QR Code" id="qrcode">
+<ul id="logs"></ul>
+<form id="usrform" action="/send" method="post" enctype="multipart/form-data">
+    <input type="file" name="contacts-list">
+    <input type="submit">
+</form>
+<textarea rows="4" cols="50" name="message" form="usrform">
+    Enter text here...</textarea>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" crossorigin="anonymous"></script>
+<script type="module">
+    import { io } from "https://cdn.socket.io/4.3.2/socket.io.esm.min.js";
+    $(document).ready(function () {
+        const socket = io();
+
+        socket.on('message', function (msg) {
+            $('#logs').prepend($('<li>').text(msg));
+        });
+
+        socket.on('qr', function (src) {
+            $('#qrcode').attr('src', src);
+            $('#qrcode').show();
+        });
+
+        socket.on('ready', function (data) {
+            $('#qrcode').hide();
+        });
+
+        socket.on('authenticated', function (data) {
+            $('#qrcode').hide();
+        });
+    });
+</script>
