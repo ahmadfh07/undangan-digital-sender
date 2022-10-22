@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active {
+  @apply flex h-7 w-7 items-center justify-center rounded-full bg-sky-700 text-center font-bold text-white;
+}
+.nonActive {
+  @apply flex h-7 w-7 items-center justify-center rounded-full border border-sky-700 text-center font-bold text-black;
+}
