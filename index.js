@@ -31,6 +31,6 @@ app.use((req, res) => {
 
 console.log(contacts);
 
-server.listen(process.env.PORT || port, () => {
-  console.log(`Express server listening on http://localhost:${port}/`);
+server.listen(process.env.PORT || port, function () {
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });

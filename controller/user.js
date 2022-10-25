@@ -8,6 +8,7 @@ const http = require("http");
 const { Server } = require("socket.io");
 const multer = require("multer");
 const XLSX = require("xlsx");
+const ShortUniqueId = require("short-unique-id");
 
 const app = express();
 const client = new Client();
@@ -30,10 +31,12 @@ router.get("/send", (req, res) => {
 });
 
 router.post("/send", upload.single("contacts-list"), function (req, res, next) {
+  const uid = new ShortUniqueId();
   const contacts = XLSX.utils.sheet_to_json(XLSX.readFile(`temp/${req.file.filename}`).Sheets["Sheet1"]);
+  let url = uid;
   contacts.forEach((contact) => {
-    client.sendMessage(`${contact.NoHp}@c.us`, `Nama anda adalah : ${contact.Nama}, ${req.body.message}`);
-    Reciever.insertMany({ Nama: contact.Nama, NoHp: contact.NoHp }, (err, result) => {
+    client.sendMessage(`${contact.NoHp}@c.us`, `Nama anda adalah : ${contact.Nama} url : ${url}, ${req.body.message}`);
+    Reciever.insertMany({ Nama: contact.Nama, NoHp: contact.NoHp, url }, (err, result) => {
       console.log(result);
     });
   });
@@ -41,6 +44,15 @@ router.post("/send", upload.single("contacts-list"), function (req, res, next) {
   res.render("send", {
     title: "Kirim PANGANAN",
     layout: "layout/main-layout",
+  });
+});
+
+router.get("undangan/:url", async (req, res) => {
+  const reciever = await Reciever.findOne({ url: req.params.url });
+  res.render("undangan", {
+    title: "Undangan",
+    layout: "/layout/main-layout",
+    reciever,
   });
 });
 
