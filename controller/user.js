@@ -30,6 +30,8 @@ router.get("/send", (req, res) => {
 });
 
 router.post("/send", upload.single("contacts-list"), function (req, res, next) {
+  console.log(req.file);
+  console.log(req.body.message);
   const contacts = XLSX.utils.sheet_to_json(XLSX.readFile(`temp/${req.file.filename}`).Sheets["Sheet1"]);
   contacts.forEach((contact) => {
     client.sendMessage(`${contact.NoHp}@c.us`, `Nama anda adalah : ${contact.Nama}, ${req.body.message}`);

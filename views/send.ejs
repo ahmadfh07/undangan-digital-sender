@@ -7,25 +7,26 @@
         <li class="nonActive">3</li>
       </ul>
       <!-- step 1 -->
-      <div class="hidden items-center justify-center py-10 drop-shadow-2xl"><img class="w-1/2" src="/img/Loading_icon.gif" alt="QR Code" id="qrcode" /></div>
+      <div class="flex items-center justify-center py-10 drop-shadow-2xl"><img class="w-1/2" src="/img/Loading_icon.gif" alt="QR Code" id="qrcode" /></div>
       <!-- step 1 end  -->
 
       <!-- step 2 -->
-      <div id="step2" class="">
-        <form class="relative flex items-center justify-center border-[3px] border-dashed border-sky-700 py-10" id="usrform" action="/send" method="post" enctype="multipart/form-data">
-          <input class="opacity-50" type="file" name="contacts-list" />
-          <div class="flex flex-col items-center justify-center">
+      <div id="step2" class="hidden">
+        <form class="group flex items-center justify-center border-[3px] border-dashed border-sky-700 py-10 px-3" id="usrform" action="/user/send" method="post" enctype="multipart/form-data">
+          <input required accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" id="inputKontak" class="hidden opacity-50" type="file" name="contacts-list" />
+          <div class="flex w-full flex-col items-center justify-center">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-h-20 h-20">
               <path fill="#0369a1" fill-rule="evenodd" d="M10.5 3.75a6 6 0 00-5.98 6.496A5.25 5.25 0 006.75 20.25H18a4.5 4.5 0 002.206-8.423 3.75 3.75 0 00-4.133-4.303A6.001 6.001 0 0010.5 3.75zm2.03 5.47a.75.75 0 00-1.06 0l-3 3a.75.75 0 101.06 1.06l1.72-1.72v4.94a.75.75 0 001.5 0v-4.94l1.72 1.72a.75.75 0 101.06-1.06l-3-3z" clip-rule="evenodd" />
             </svg>
-            <h1 class="text-xl font-bold">Drag & Drop</h1>
-            <h1 class="text-xl font-bold">or</h1>
-            <button id="buttonUpload" class="mt-10 rounded-md bg-sky-700 py-2 px-4 text-center text-white transition-all duration-200 ease-in-out hover:-translate-y-1 hover:bg-sky-900" type="submit">Browse</button>
-            <h1 class="text-sm font-normal text-slate-400">Support: .xls & .json</h1>
+            <h1 class="w-full text-center text-xl font-medium">Drag & Drop</h1>
+            <h1 class="w-full text-center text-xl font-medium">or</h1>
+            <label for="contacts-list" id="buttonUpload" class="mt-1 cursor-pointer rounded-md bg-sky-700 py-2 px-4 text-center text-white transition-all duration-200 ease-in-out hover:-translate-y-1 hover:bg-sky-900" type="submit">Browse</label>
+            <label id="buttonDelete" class="mt-1 hidden cursor-pointer rounded-md bg-rose-700 py-2 px-4 text-center text-white transition-all duration-200 ease-in-out hover:-translate-y-1 hover:bg-rose-900" type="submit">Delete</label>
+            <h1 class="text-sm font-normal text-slate-400">Support: .xlsx</h1>
           </div>
         </form>
-        <textarea class="h-full w-full p-3 drop-shadow-2xl placeholder:italic focus:outline-none" name="message" form="usrform" placeholder="Start typing here..."></textarea>
-        <button class="mt-10 rounded-md bg-sky-700 py-2 px-4 text-center text-white transition-all duration-200 ease-in-out hover:-translate-y-1 hover:bg-sky-900" type="submit">Submit</button>
+        <textarea required class="h-full w-full p-3 drop-shadow-2xl placeholder:italic focus:outline-none" name="message" form="usrform" placeholder="Start typing here..."></textarea>
+        <button class="mt-10 rounded-md bg-sky-700 py-2 px-4 text-center text-white transition-all duration-200 ease-in-out hover:-translate-y-1 hover:bg-sky-900" form="usrform" type="submit">Submit</button>
       </div>
     </div>
   </div>
