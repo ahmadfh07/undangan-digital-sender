@@ -33,9 +33,9 @@ router.get("/send", (req, res) => {
 router.post("/send", upload.single("contacts-list"), function (req, res, next) {
   const uid = new ShortUniqueId();
   const contacts = XLSX.utils.sheet_to_json(XLSX.readFile(`temp/${req.file.filename}`).Sheets["Sheet1"]);
-  let url = uid;
+  let url = uid();
   contacts.forEach((contact) => {
-    client.sendMessage(`${contact.NoHp}@c.us`, `Nama anda adalah : ${contact.Nama} url : ${url}, ${req.body.message}`);
+    client.sendMessage(`${contact.NoHp}@c.us`, `Nama anda adalah : ${contact.Nama} url : ${req.hostname}/user/undangan/${url}, ${req.body.message}`);
     Reciever.insertMany({ Nama: contact.Nama, NoHp: contact.NoHp, url }, (err, result) => {
       console.log(result);
     });
@@ -47,11 +47,11 @@ router.post("/send", upload.single("contacts-list"), function (req, res, next) {
   });
 });
 
-router.get("undangan/:url", async (req, res) => {
+router.get("/undangan/:url", async (req, res) => {
   const reciever = await Reciever.findOne({ url: req.params.url });
   res.render("undangan", {
     title: "Undangan",
-    layout: "/layout/main-layout",
+    layout: "layout/main-layout",
     reciever,
   });
 });

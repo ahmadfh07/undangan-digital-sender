@@ -6,7 +6,6 @@ const { router: user, server, app } = require("./controller/user");
 const XLSX = require("xlsx");
 
 const port = 3000;
-const contacts = XLSX.utils.sheet_to_json(XLSX.readFile(`temp/contact.xlsx`).Sheets["Sheet1"]);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
@@ -28,8 +27,6 @@ app.use((req, res) => {
   res.status(404);
   res.send("<h1>404</h1>");
 });
-
-console.log(contacts);
 
 server.listen(process.env.PORT || port, function () {
   console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
