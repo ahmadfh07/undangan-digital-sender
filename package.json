@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "devCSS": "npx tailwindcss -i ./src/css/input.css -o ./public/style.css --watch",
+    "buildCSS": "npx tailwindcss -i ./src/css/input.css -o ./public/style.css --minify",
     "dev": "nodemon index",
     "start": "node index.js"
   },
